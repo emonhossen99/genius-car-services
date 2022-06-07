@@ -1,0 +1,18 @@
+.loginfrom{
+    border: 1px solid rgb(205, 204, 204);
+    border-radius: 10px;
+    padding: 10px;
+}
+.registerButton{
+    text-decoration: none;
+    color: orange;
+    cursor: pointer;
+}
+.loading{
+    color: orange;
+    text-align: center;
+}
+.error{
+    text-align: center;
+    color: red;
+}

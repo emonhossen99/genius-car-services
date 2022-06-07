@@ -6,6 +6,11 @@ import LogIn from './Page/Home/LogIn/LogIn';
 import Header from './Page/Shered/Header/Header';
 import Footer from './Page/Shered/Footer/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ServicesDetail from './Page/Home/ServicesDetail/ServicesDetail';
+import NotFound from './Page/Shered/NotFound/NotFound';
+import Register from './Page/Home/LogIn/Register/Register';
+import CheakOut from './Page/Home/CheakOut/CheakOut';
+import RequireAuth from './Page/RequireAuth/RequireAuth';
 
 function App() {
   return (
@@ -13,8 +18,17 @@ function App() {
     <Header></Header>
      <Routes>
        <Route path='/' element={<Home></Home>}></Route>
+       <Route path='/home' element={<Home></Home>}></Route>
+       <Route path='/service/:servicesid' element={<ServicesDetail></ServicesDetail>}></Route>
        <Route path='/about' element={<About></About>}></Route>
+       <Route path='/cheakout' element={
+         <RequireAuth>
+           <CheakOut></CheakOut>
+         </RequireAuth>
+       }></Route>
+       <Route path='/register' element={<Register></Register>}></Route>
        <Route path='/login' element={<LogIn></LogIn>}></Route>
+       <Route path="*" element={<NotFound></NotFound>}></Route>
      </Routes>
      <Footer></Footer>
     </div>

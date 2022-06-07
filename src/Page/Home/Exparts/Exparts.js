@@ -18,8 +18,8 @@ const Exparts = () => {
         { id: 6, name: 'Md Rifat Mahamud', img: expart6 }
     ]
     return (
-        <div>
-            <h2 className='services-title mt-5 mt-3'>Our Exparts</h2>
+        <div id='exparts'>
+            <h2 className='services-title mt-5 mb-5'>Our Exparts</h2>
             <div className='container'>
             <Row xs={1} md={3} className="g-4">
                     {exparts.map(expart => <Expart

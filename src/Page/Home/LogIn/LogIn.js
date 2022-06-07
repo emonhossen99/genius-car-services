@@ -8,6 +8,7 @@ import './LogIn.css'
 import SosalLogin from './SosalLogin/SosalLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageTitle from '../../Shered/PageTitle/PageTitle';
 
 
 const LogIn = () => {
@@ -53,6 +54,7 @@ const LogIn = () => {
         <div>
             <h1 className='text-info text-center mt-2'>Places Login</h1>
             <div className='w-50 mx-auto loginfrom'>
+                <PageTitle title='LogIn'></PageTitle>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>

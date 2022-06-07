@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import auth from '../../../../firebase.init';
 import SosalLogin from '../SosalLogin/SosalLogin';
 import Spener from '../../../Shered/Spener/Spener';
+import PageTitle from '../../../Shered/PageTitle/PageTitle';
 
 
 
@@ -44,6 +45,7 @@ const Register = () => {
         <div>
             <h1 className='text-info text-center mt-2'>Places Register</h1>
             <div className='w-50 mx-auto loginfrom'>
+                <PageTitle title='Register'></PageTitle>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Your Name : </Form.Label>

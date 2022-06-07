@@ -1,15 +1,18 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate,useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Spener from '../../Shered/Spener/Spener';
 import './LogIn.css'
 import SosalLogin from './SosalLogin/SosalLogin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const LogIn = () => {
-    const emailRef = useRef('')
-    const passwordRef = useRef('')
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation()
     const [
@@ -21,7 +24,6 @@ const LogIn = () => {
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
     let from = location.state?.from?.pathname || "/";
-
     if (user) {
         navigate(from, { replace: true });
     }
@@ -34,9 +36,14 @@ const LogIn = () => {
 
     const handleResetPassword = async () => {
         const email = emailRef.current.value
-        await sendPasswordResetEmail(email);
-        alert('Sent email');
-      }
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else{
+            toast('Places Enter Your Email...')
+        }
+    }
 
     const handleregiser = () => {
         navigate('/register')
@@ -59,12 +66,12 @@ const LogIn = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                     </Form.Group>
-                   
+
                     {
-                        loading && <p className='loading'>Loading...</p>
+                        loading && <Spener></Spener>
                     }
-                     {
-                    error && <p className='error'>{error?.message}</p>
+                    {
+                        error && <p className='error'>{error?.message}</p>
                     }
                     <Button variant="primary" type="submit" className='w-50 d-block mx-auto mb-2'>
                         LogIn
@@ -73,6 +80,7 @@ const LogIn = () => {
                     <p>Forget Password?<span className='registerButton' onClick={handleResetPassword}>ForGet PassWord</span></p>
                 </Form>
                 <SosalLogin></SosalLogin>
+                <ToastContainer></ToastContainer>
             </div>
         </div>
     );

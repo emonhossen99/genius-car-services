@@ -30,6 +30,7 @@ function RequireAuth({ children }) {
        Sent Verify Email
       </button>
       <ToastContainer></ToastContainer>
+      
     </div>
   }
 

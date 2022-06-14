@@ -1,5 +1,6 @@
 import React from 'react';
 import useHooks from '../../hooks/useHooks';
+import { toast, ToastContainer } from 'react-toastify';
 
 const ManageUser = () => {
     const [services, setServices] = useHooks();
@@ -16,6 +17,7 @@ const ManageUser = () => {
                if(data.deletedCount > 0){
                 const remaining = services.filter(service => service._id !== id)
                 setServices(remaining);
+                toast('Your Services Delete Completed')
                }
             })
         }
@@ -26,7 +28,9 @@ const ManageUser = () => {
             {
             services.map(service => <h3 key={service._id}>{service.name} <button onClick={() => handleDelete(service._id)}>X</button></h3>)
             }
+            <ToastContainer></ToastContainer>
         </div>
+        
     );
 };
 

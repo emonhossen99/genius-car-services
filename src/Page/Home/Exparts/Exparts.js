@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardGroup, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import expart1 from '../../../images/experts/expert-1.jpg'
 import expart2 from '../../../images/experts/expert-2.jpg'
 import expart3 from '../../../images/experts/expert-3.jpg'

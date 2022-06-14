@@ -13,6 +13,7 @@ import CheakOut from './Page/Home/CheakOut/CheakOut';
 import RequireAuth from './Page/RequireAuth/RequireAuth';
 import Addservices from './Page/Addservices/Addservices';
 import ManageUser from './Page/ManageUser/ManageUser';
+import Orders from './Page/Orders/Orders';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
        <Route path='/home' element={<Home></Home>}></Route>
        <Route path='/service/:serviceId' element={<ServicesDetail></ServicesDetail>}></Route>
        <Route path='/about' element={<About></About>}></Route>
-       <Route path='/cheakout' element={
+       <Route path='/cheakout/:serviceId' element={
          <RequireAuth>
            <CheakOut></CheakOut>
          </RequireAuth>
@@ -33,9 +34,14 @@ function App() {
            <Addservices></Addservices>
          </RequireAuth>
        }></Route>
-       <Route path='managuser' element={
+       <Route path='/managuser' element={
          <RequireAuth>
            <ManageUser></ManageUser>
+         </RequireAuth>
+       }></Route>
+       <Route path='/orders' element={
+         <RequireAuth>
+           <Orders></Orders>
          </RequireAuth>
        }></Route>
        <Route path='/register' element={<Register></Register>}></Route>

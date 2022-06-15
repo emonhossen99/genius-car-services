@@ -41,7 +41,7 @@ const CheakOut = () => {
         }
         console.log(orders.email)
 
-        axios.post('http://localhost:5000/oreders', orders)
+        axios.post('https://ancient-hollows-54210.herokuapp.com/oreders', orders)
             .then(response => {
                 const { data } = response
                 if (data.insertedId) {

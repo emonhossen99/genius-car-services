@@ -11,11 +11,10 @@ const Orders = () => {
     const [user] = useAuthState(auth);
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
-    console.log(orders);
     useEffect(() => {
         const getOrders = async () => {
             const email = user.email;
-            const url = `http://localhost:5000/orders?email=${email}`
+            const url = `https://ancient-hollows-54210.herokuapp.com/orders?email=${email}`
             try {
                 const { data } = await axios.get(url, {
                     headers: {
@@ -37,6 +36,9 @@ const Orders = () => {
     return (
         <div className='w-50 mx-auto text-info mt-3 mb-2'>
             <h1>This Is A Orders Pages : {orders.length}</h1>
+            {
+                orders.map(order => <p key={order._id}>{order.email} : {order.service}</p>)
+            }
         </div>
     );
 };

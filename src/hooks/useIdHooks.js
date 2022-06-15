@@ -4,7 +4,7 @@ const useIdHooks = (serviceId) => {
     const [service,setServices] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/service/${serviceId}`
+        const url = `https://ancient-hollows-54210.herokuapp.com/service/${serviceId}`
         fetch(url)
         .then(res => res.json())
         .then(data => setServices(data))

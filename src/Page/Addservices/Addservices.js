@@ -9,7 +9,7 @@ const Addservices = () => {
     const onSubmit = data => {
         console.log(data);
 
-        fetch('http://localhost:5000/service', {
+        fetch('https://ancient-hollows-54210.herokuapp.com/service', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

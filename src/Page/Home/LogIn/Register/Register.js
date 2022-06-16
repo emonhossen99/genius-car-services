@@ -6,6 +6,8 @@ import auth from '../../../../firebase.init';
 import SosalLogin from '../SosalLogin/SosalLogin';
 import Spener from '../../../Shered/Spener/Spener';
 import PageTitle from '../../../Shered/PageTitle/PageTitle';
+import useToken from '../../../../hooks/useToken';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 
@@ -22,14 +24,15 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useToken(user)
     if (loading || updating) {
         return <Spener></Spener>
     }
     const handlelogin = () => {
         navigate('/login')
     }
-    if (user) {
-        console.log('user', user);
+    if (token) {
+        navigate('/home');
     }
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -38,8 +41,8 @@ const Register = () => {
         const password = passwordRef.current.value;
         await createUserWithEmailAndPassword(email, password)
         await updateProfile({ displayName: name });
-        alert('Updated profile');
-        navigate('/home');
+        toast('Updated profile');
+       
     }
     return (
         <div>
@@ -82,6 +85,7 @@ const Register = () => {
                     <p>Already Have An Account?<Link to='/login' className='registerButton' onClick={handlelogin}>LogIn</Link></p>
                     <SosalLogin></SosalLogin>
                 </Form>
+                <ToastContainer></ToastContainer>
             </div>
         </div>
     );

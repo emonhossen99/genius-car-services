@@ -10,6 +10,7 @@ import SosalLogin from './SosalLogin/SosalLogin';
 import PageTitle from '../../Shered/PageTitle/PageTitle';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useToken from '../../../hooks/useToken';
 
 
 
@@ -25,8 +26,12 @@ const LogIn = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
-
+    const [token] = useToken(user)
     let from = location.state?.from?.pathname || "/";
+    
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleSubmit = async event => {
         event.preventDefault()
@@ -34,11 +39,6 @@ const LogIn = () => {
         const password = passwordRef.current.value
 
         await signInWithEmailAndPassword(email, password)
-        const {data} = await axios.post('https://ancient-hollows-54210.herokuapp.com/login',{email})
-        console.log(data);
-        localStorage.setItem('accessToken',data.accessToken)
-        navigate(from, { replace: true });
-
     }
 
     const handleResetPassword = async () => {
@@ -47,7 +47,7 @@ const LogIn = () => {
             await sendPasswordResetEmail(email);
             toast('Sent email');
         }
-        else{
+        else {
             toast('Places Enter Your Email...')
         }
     }
